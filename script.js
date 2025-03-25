@@ -1,5 +1,38 @@
 // Simplified script with minimal animations
 document.addEventListener('DOMContentLoaded', function() {
+    // Mobile navigation toggle
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    
+    if (mobileNavToggle) {
+        mobileNavToggle.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            document.body.classList.toggle('nav-open');
+            
+            // Change icon based on state
+            const icon = this.querySelector('i');
+            if (mainNav.classList.contains('active')) {
+                icon.classList.remove('ph-list');
+                icon.classList.add('ph-x');
+            } else {
+                icon.classList.remove('ph-x');
+                icon.classList.add('ph-list');
+            }
+        });
+        
+        // Close mobile nav when clicking on a link
+        const mobileNavLinks = mainNav.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mainNav.classList.remove('active');
+                document.body.classList.remove('nav-open');
+                const icon = mobileNavToggle.querySelector('i');
+                icon.classList.remove('ph-x');
+                icon.classList.add('ph-list');
+            });
+        });
+    }
+    
     // Smooth scrolling for anchor links
     const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
     
