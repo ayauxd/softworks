@@ -1025,4 +1025,56 @@ document.addEventListener('DOMContentLoaded', function() {
             demoModal.style.display = 'block';
         });
     }
+
+    // AI Character Selection
+    const aiCharacterButtons = document.querySelectorAll('.ai-character-button');
+    const avatarCircle = document.querySelector('.avatar-circle');
+    
+    // Colors for different characters
+    const characterColors = {
+        'support': { gradient: 'linear-gradient(135deg, #3498db, #2980b9)' },
+        'developer': { gradient: 'linear-gradient(135deg, #2ecc71, #27ae60)' },
+        'strategy': { gradient: 'linear-gradient(135deg, #9b59b6, #8e44ad)' },
+        'data': { gradient: 'linear-gradient(135deg, #f1c40f, #f39c12)' },
+        'eric': { gradient: 'linear-gradient(135deg, #ff4500, #d10000)' },
+        'lisa': { gradient: 'linear-gradient(135deg, #3498db, #2980b9)' },
+        'alex': { gradient: 'linear-gradient(135deg, #f39c12, #e67e22)' },
+        'maya': { gradient: 'linear-gradient(135deg, #2ecc71, #27ae60)' }
+    };
+    
+    if (aiCharacterButtons.length > 0 && avatarCircle) {
+        aiCharacterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                aiCharacterButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Change avatar color based on character
+                const character = this.dataset.character;
+                if (characterColors[character]) {
+                    avatarCircle.style.background = characterColors[character].gradient;
+                }
+            });
+        });
+    }
+    
+    // Call Button
+    const tryCallButton = document.querySelector('.try-call-button');
+    if (tryCallButton) {
+        tryCallButton.addEventListener('click', function() {
+            // Get the active character
+            const activeButton = document.querySelector('.ai-character-button.active');
+            if (activeButton) {
+                const character = activeButton.dataset.character;
+                console.log(`Starting a call with ${character}`);
+                
+                // Here you would trigger your call modal or functionality
+                alert(`Starting a call with ${character}. This feature will be coming soon!`);
+            }
+        });
+    }
 });
