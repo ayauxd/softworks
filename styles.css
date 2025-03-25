@@ -131,7 +131,7 @@ header {
 .logo {
     font-family: 'Space Mono', monospace;
     font-weight: 700;
-    font-size: 28px; /* Increased from 22px */
+    font-size: 28px;
     color: var(--text-primary);
     position: relative;
     padding: 5px 0;
@@ -147,6 +147,11 @@ header {
     height: 3px;
     background-color: var(--primary);
     border-radius: 1.5px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
 }
 
 .main-nav {
@@ -293,7 +298,8 @@ header {
 
 .hero-img {
     max-width: 100%;
-    height: auto;
+    height: 100%;
+    width: 100%;
     object-fit: cover;
     border-radius: var(--border-radius);
     transform: scale(1.05);
@@ -312,6 +318,7 @@ header {
     height: 100%;
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
     z-index: 1;
+    border-radius: var(--border-radius);
 }
 
 h1 {
@@ -1321,6 +1328,18 @@ footer {
     
     .mobile-nav-toggle {
         display: flex;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1000;
+    }
+    
+    .header-right {
+        position: absolute;
+        right: 70px; /* Position to the left of the mobile-nav-toggle */
+        top: 50%;
+        transform: translateY(-50%);
     }
     
     .main-nav {
@@ -1363,10 +1382,6 @@ footer {
         background-color: rgba(209, 0, 0, 0.1);
         border-left: 3px solid var(--primary);
         padding-left: 20px;
-    }
-    
-    .header-right {
-        display: none;
     }
     
     .card-grid,
@@ -1430,12 +1445,6 @@ footer {
         text-align: center;
     }
     
-    .hero-badge {
-        display: inline-block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
     .hero-ctas {
         display: flex;
         flex-direction: column;
@@ -1488,11 +1497,6 @@ footer {
 }
 
 @media screen and (max-width: 576px) {
-    .hero-badge {
-        width: 100%;
-        text-align: center;
-    }
-    
     .contact-item {
         flex-direction: column;
         align-items: flex-start;
@@ -1516,38 +1520,6 @@ footer {
     .cta-button, .secondary-button {
         width: 100%;
     }
-}
-
-.hero-badge {
-    display: inline-block;
-    background-color: rgba(209, 0, 0, 0.1);
-    color: var(--primary);
-    font-size: 0.85rem;
-    font-weight: 600;
-    padding: 6px 12px;
-    border-radius: 20px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 6px rgba(209, 0, 0, 0.15);
-    border: 1px solid rgba(209, 0, 0, 0.2);
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.hero-badge:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, rgba(209, 0, 0, 0.05) 0%, rgba(209, 0, 0, 0) 100%);
-    z-index: -1;
-}
-
-.hero-badge:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(209, 0, 0, 0.2);
 }
 
 .social-icon {
@@ -1665,5 +1637,72 @@ button {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* New theme switcher styles */
+.theme-switcher {
+    position: relative;
+    z-index: 10;
+}
+
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: rgba(209, 0, 0, 0.1);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    color: var(--primary);
+}
+
+.theme-toggle:hover {
+    background-color: var(--primary);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(209, 0, 0, 0.2);
+}
+
+.theme-icon-light,
+.theme-icon-dark {
+    position: absolute;
+    font-size: 22px;
+    transition: all 0.3s ease;
+}
+
+.theme-icon-light {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.theme-icon-dark {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.dark-mode .theme-icon-light {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.dark-mode .theme-icon-dark {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Update header-right for responsiveness */
+@media screen and (max-width: 768px) {
+    .header-right {
+        display: flex;
+        position: absolute;
+        right: 70px;
+        top: 50%;
+        transform: translateY(-50%);
     }
 }

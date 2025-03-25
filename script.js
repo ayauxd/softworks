@@ -113,27 +113,31 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.add('dark-mode');
     }
 
-    // Toggle switch functionality
-    const toggleSwitch = document.querySelector('.toggle-switch');
-    const toggleCircle = document.querySelector('.toggle-circle');
+    // Theme toggle functionality
+    const themeToggle = document.querySelector('.theme-toggle');
     const body = document.body;
 
-    // Initialize toggle state based on dark mode
-    if (body.classList.contains('dark-mode')) {
-        toggleCircle.style.transform = 'translateX(18px)';
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            // Toggle dark mode
+            body.classList.toggle('dark-mode');
+            
+            // Save preference to localStorage
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
     }
-
-    toggleSwitch.addEventListener('click', function() {
-        // Toggle dark mode
-        body.classList.toggle('dark-mode');
-        
-        // Update toggle position
-        if (body.classList.contains('dark-mode')) {
-            toggleCircle.style.transform = 'translateX(18px)';
-        } else {
-            toggleCircle.style.transform = 'translateX(0)';
-        }
-    });
+    
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+    } else if (savedTheme === 'light') {
+        document.body.classList.remove('dark-mode');
+    }
 
     // Solution card selection
     const solutionCards = document.querySelectorAll('.solutions .card');
