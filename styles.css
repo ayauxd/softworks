@@ -91,8 +91,8 @@ body.nav-open {
 .mobile-nav-toggle {
     display: none;
     cursor: pointer;
-    width: 44px;
-    height: 44px;
+    width: 50px;
+    height: 50px;
     background-color: rgba(209, 0, 0, 0.1);
     border: none;
     border-radius: 50%;
@@ -101,11 +101,15 @@ body.nav-open {
     justify-content: center;
     transition: all 0.3s ease;
     position: relative;
+    box-shadow: 0 4px 8px rgba(209, 0, 0, 0.1);
+    z-index: 1001;
 }
 
-.mobile-nav-toggle:hover {
-    background-color: rgba(209, 0, 0, 0.2);
-    transform: translateY(-2px);
+.mobile-nav-toggle:hover, 
+.mobile-nav-toggle:focus {
+    background-color: var(--primary);
+    color: var(--white);
+    transform: rotate(90deg);
 }
 
 .container {
@@ -497,32 +501,70 @@ h2 {
     border-radius: 2px;
 }
 
-/* Feature list */
+/* Feature list enhanced styles */
 .feature-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 16px;
-    margin-bottom: 40px;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 24px;
+    margin: 40px 0;
     list-style: none;
 }
 
 .feature-list li {
     display: flex;
-    align-items: center;
-    gap: 12px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    color: var(--text-secondary);
-    transition: transform 0.2s ease;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    border: var(--border-light);
+    transition: all 0.3s ease;
 }
 
 .feature-list li:hover {
-    transform: translateX(5px);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(209, 0, 0, 0.2);
 }
 
-.feature-list li i {
+.feature-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background-color: rgba(209, 0, 0, 0.1);
+    border-radius: 12px;
     color: var(--primary);
+    font-size: 24px;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.feature-list li:hover .feature-icon {
+    background-color: var(--primary);
+    color: var(--white);
+    transform: scale(1.1);
+}
+
+.feature-content {
+    flex: 1;
+}
+
+.feature-content h4 {
+    font-family: 'Space Mono', monospace;
     font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.feature-content p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.5;
 }
 
 /* Benefits grid */
@@ -1278,12 +1320,7 @@ footer {
     }
     
     .mobile-nav-toggle {
-        display: block;
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 1000;
+        display: flex;
     }
     
     .main-nav {
@@ -1299,23 +1336,33 @@ footer {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 20px;
+        padding: 80px 30px 30px;
     }
     
     .main-nav.active {
         transform: translateX(0);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
     }
     
     .main-nav ul {
         flex-direction: column;
-        gap: 30px;
-        text-align: center;
+        gap: 0;
     }
     
     .main-nav a {
-        font-size: 24px;
-        padding: 12px;
         display: block;
+        font-size: 22px;
+        padding: 16px;
+        margin: 8px 0;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        border-left: 3px solid transparent;
+    }
+    
+    .main-nav a:hover {
+        background-color: rgba(209, 0, 0, 0.1);
+        border-left: 3px solid var(--primary);
+        padding-left: 20px;
     }
     
     .header-right {
@@ -1593,4 +1640,30 @@ button {
     -moz-appearance: none;
     appearance: none;
     border-radius: 8px;
+}
+
+/* Mobile nav animation */
+.main-nav.active li {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.4s forwards;
+}
+
+.main-nav.active li:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.main-nav.active li:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.main-nav.active li:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

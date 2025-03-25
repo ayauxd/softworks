@@ -1,22 +1,32 @@
 // Simplified script with minimal animations
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile navigation toggle
+    // Mobile navigation toggle with accessibility improvements
     const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
     const mainNav = document.querySelector('.main-nav');
     
     if (mobileNavToggle) {
         mobileNavToggle.addEventListener('click', function() {
+            const isExpanded = mainNav.classList.contains('active');
+            
+            // Toggle menu visibility
             mainNav.classList.toggle('active');
             document.body.classList.toggle('nav-open');
             
+            // Update accessibility attributes
+            this.setAttribute('aria-expanded', !isExpanded);
+            
             // Change icon based on state
             const icon = this.querySelector('i');
-            if (mainNav.classList.contains('active')) {
+            if (!isExpanded) {
                 icon.classList.remove('ph-list');
                 icon.classList.add('ph-x');
+                // Add focus trap for keyboard users
+                trapFocus(mainNav);
             } else {
                 icon.classList.remove('ph-x');
                 icon.classList.add('ph-list');
+                // Remove focus trap
+                removeFocusTrap();
             }
         });
         
@@ -26,11 +36,53 @@ document.addEventListener('DOMContentLoaded', function() {
             link.addEventListener('click', function() {
                 mainNav.classList.remove('active');
                 document.body.classList.remove('nav-open');
+                mobileNavToggle.setAttribute('aria-expanded', 'false');
                 const icon = mobileNavToggle.querySelector('i');
                 icon.classList.remove('ph-x');
                 icon.classList.add('ph-list');
             });
         });
+        
+        // Close menu on escape key press
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && mainNav.classList.contains('active')) {
+                mainNav.classList.remove('active');
+                document.body.classList.remove('nav-open');
+                mobileNavToggle.setAttribute('aria-expanded', 'false');
+                mobileNavToggle.focus(); // Return focus to toggle button
+                const icon = mobileNavToggle.querySelector('i');
+                icon.classList.remove('ph-x');
+                icon.classList.add('ph-list');
+            }
+        });
+    }
+    
+    // Focus trap for mobile navigation
+    function trapFocus(element) {
+        const focusableElements = element.querySelectorAll('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        const firstFocusable = focusableElements[0];
+        const lastFocusable = focusableElements[focusableElements.length - 1];
+        
+        // Store the function to use it in the removal later
+        element.focusTrapHandler = function(e) {
+            if (e.key === 'Tab') {
+                if (e.shiftKey && document.activeElement === firstFocusable) {
+                    e.preventDefault();
+                    lastFocusable.focus();
+                } else if (!e.shiftKey && document.activeElement === lastFocusable) {
+                    e.preventDefault();
+                    firstFocusable.focus();
+                }
+            }
+        };
+        
+        element.addEventListener('keydown', element.focusTrapHandler);
+    }
+    
+    function removeFocusTrap() {
+        if (mainNav.focusTrapHandler) {
+            mainNav.removeEventListener('keydown', mainNav.focusTrapHandler);
+        }
     }
     
     // Smooth scrolling for anchor links

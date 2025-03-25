@@ -17,12 +17,12 @@
     <div class="container">
         <header>
             <div class="logo">Softworks Trading</div>
-            <button class="mobile-nav-toggle" aria-label="Toggle Navigation Menu">
+            <button class="mobile-nav-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="main-navigation">
                 <i class="ph ph-list" style="font-size: 24px;"></i>
             </button>
-            <nav class="main-nav">
+            <nav class="main-nav" id="main-navigation" aria-label="Main Navigation">
                 <ul>
-                    <li><a href="#what-we-do">What We Do</a></li>
+                    <li><a href="#what-we-do" aria-current="page">What We Do</a></li>
                     <li><a href="#blog">Blog</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -46,7 +46,6 @@
                         <div class="hero-image-overlay"></div>
                     </div>
                     <div class="hero-content">
-                        <div class="hero-badge">Proven AI Implementation Specialists</div>
                         <h1>AI Adoption, <span class="highlight">Simplified</span></h1>
                         <p class="description">At Softworks Trading, we help individuals and small businesses integrate AI into their daily workflows—strategically, sustainably, and with real-world impact. Whether you're a solopreneur looking to automate tasks, a small agency scaling operations, or exploring what AI can do for you—we transform curiosity into measurable results.</p>
                         <div class="hero-ctas">
@@ -62,12 +61,48 @@
                 <h3 class="section-title">Functional, Not Futuristic</h3>
                 <p class="section-description">AI is no longer futuristic—it's functional. From automating the mundane to unlocking entirely new service offerings, the right tools can help you:</p>
                 <ul class="feature-list">
-                    <li><i class="ph ph-check"></i> Save time and mental energy</li>
-                    <li><i class="ph ph-check"></i> Streamline operations and reduce manual tasks</li>
-                    <li><i class="ph ph-check"></i> Generate more qualified leads</li>
-                    <li><i class="ph ph-check"></i> Create better content, faster</li>
-                    <li><i class="ph ph-check"></i> Make smarter decisions with better data</li>
-                    <li><i class="ph ph-check"></i> Expand without overextending</li>
+                    <li>
+                        <div class="feature-icon"><i class="ph ph-hourglass"></i></div>
+                        <div class="feature-content">
+                            <h4>Save time and mental energy</h4>
+                            <p>Automate repetitive tasks and focus on what truly matters to your business</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feature-icon"><i class="ph ph-flow-arrow"></i></div>
+                        <div class="feature-content">
+                            <h4>Streamline operations</h4>
+                            <p>Reduce manual tasks and create efficient workflows that scale with your business</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feature-icon"><i class="ph ph-users-three"></i></div>
+                        <div class="feature-content">
+                            <h4>Generate qualified leads</h4>
+                            <p>Use AI-powered targeting to find and engage your ideal customers</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feature-icon"><i class="ph ph-lightning"></i></div>
+                        <div class="feature-content">
+                            <h4>Create better content, faster</h4>
+                            <p>Produce high-quality content in a fraction of the time with AI assistance</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feature-icon"><i class="ph ph-chart-pie"></i></div>
+                        <div class="feature-content">
+                            <h4>Make data-driven decisions</h4>
+                            <p>Gain actionable insights from your data to guide strategic direction</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feature-icon"><i class="ph ph-trend-up"></i></div>
+                        <div class="feature-content">
+                            <h4>Scale efficiently</h4>
+                            <p>Expand your business operations without proportionally increasing costs</p>
+                        </div>
+                    </li>
                 </ul>
                 <div class="card-grid">
                     <div class="card">
