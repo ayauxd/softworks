@@ -1189,6 +1189,8 @@ footer {
 
 /* Improved select styling */
 .consultation-form select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
     appearance: none;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
     background-repeat: no-repeat;
@@ -1548,6 +1550,8 @@ footer {
     textarea,
     button {
         -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
         border-radius: 8px;
         font-size: 16px !important; /* Prevents auto-zoom on input focus */
     }
@@ -1563,6 +1567,9 @@ footer {
     /* Prevent text resizing when device orientation changes */
     html {
         -webkit-text-size-adjust: 100%;
+        -moz-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        text-size-adjust: 100%;
     }
     
     /* Improve touch response on iOS Safari */
@@ -1574,4 +1581,16 @@ footer {
         cursor: pointer;
         touch-action: manipulation;
     }
+}
+
+/* Fix for input appearance across all browsers */
+input[type="text"],
+input[type="email"],
+textarea,
+select,
+button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 8px;
 }
