@@ -1,0 +1,6 @@
+.qodo
+.DS_Store
+node_modules/
+.vercel/
+.env
+*.log
