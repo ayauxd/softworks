@@ -16,7 +16,7 @@
 <body>
     <div class="container">
         <header>
-            <div class="logo">Softworks Trading Co.</div>
+            <div class="logo">Softworks Trading</div>
             <nav class="main-nav">
                 <ul>
                     <li><a href="#what-we-do">What We Do</a></li>
@@ -38,15 +38,17 @@
         <main>
             <section class="hero">
                 <div class="hero-card">
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?w=800&auto=format&fit=crop&q=80&crop=entropy" alt="AI technology visualization with person" class="hero-img">
-                    <div class="hero-image-overlay"></div>
-                </div>
+                    <div class="hero-image">
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&auto=format&fit=crop&q=80&crop=entropy" alt="Team discussing AI implementation strategies" class="hero-img">
+                        <div class="hero-image-overlay"></div>
+                    </div>
                     <div class="hero-content">
+                        <div class="hero-badge">Proven AI Implementation Specialists</div>
                         <h1>AI Adoption, <span class="highlight">Simplified</span></h1>
-                        <p class="description">At SoftWorks Trading Co, we help individuals and small businesses integrate AI into their daily workflows—strategically, sustainably, and with real-world impact. Whether you're a solopreneur drowning in repetitive tasks, a small agency looking to scale without hiring, or just someone curious about what AI can actually do for you—we're here to turn that curiosity into action.</p>
+                        <p class="description">At Softworks Trading, we help individuals and small businesses integrate AI into their daily workflows—strategically, sustainably, and with real-world impact. Whether you're a solopreneur looking to automate tasks, a small agency scaling operations, or exploring what AI can do for you—we transform curiosity into measurable results.</p>
                         <div class="hero-ctas">
-                            <a href="#try-tiwa" class="cta-button" id="start-consultation">START FREE CONSULTATION →</a>
+                            <a href="#try-tiwa" class="cta-button pulse-button" id="start-consultation">START FREE CONSULTATION <i class="ph ph-arrow-right"></i></a>
+                            <p class="cta-caption">No technical knowledge required • 30-minute session</p>
                         </div>
                     </div>
                 </div>
@@ -156,38 +158,59 @@
             </section>
 
             <section id="contact" class="contact-section">
+                <div class="contact-pattern-bg"></div>
                 <h2>Get In Touch</h2>
                 <h3 class="section-title">Contact Us</h3>
                 <p class="section-description">Ready to explore how AI can transform your business? Reach out to our team of specialists today.</p>
                 
                 <div class="contact-grid">
                     <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="ph ph-envelope contact-icon"></i>
-                            <div>
-                                <h4>Email Us</h4>
-                                <p>hello@softworkstrading.co</p>
-                                <p class="info-text">We respond to all inquiries within 24 hours</p>
+                        <div class="contact-card">
+                            <div class="contact-methods">
+                                <div class="contact-item">
+                                    <div class="contact-icon-wrapper">
+                                        <i class="ph ph-envelope contact-icon"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Email Us</h4>
+                                        <p>hello@softworkstrading.co</p>
+                                        <p class="info-text">We respond to all inquiries within 24 hours</p>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-icon-wrapper">
+                                        <i class="ph ph-phone contact-icon"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Call Us</h4>
+                                        <p>(555) 123-4567</p>
+                                        <p class="info-text">Monday to Friday, 9am - 5pm PST</p>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <div class="contact-icon-wrapper">
+                                        <i class="ph ph-map-pin contact-icon"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Visit Us</h4>
+                                        <p>123 Innovation Way, Suite 400</p>
+                                        <p>San Francisco, CA 94103</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="ph ph-phone contact-icon"></i>
-                            <div>
-                                <h4>Call Us</h4>
-                                <p>(555) 123-4567</p>
-                                <p class="info-text">Monday to Friday, 9am - 5pm PST</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="ph ph-map-pin contact-icon"></i>
-                            <div>
-                                <h4>Visit Us</h4>
-                                <p>123 Innovation Way, Suite 400</p>
-                                <p>San Francisco, CA 94103</p>
+                            
+                            <div class="contact-social">
+                                <h4>Connect With Us</h4>
+                                <div class="social-icons">
+                                    <a href="#" class="social-icon" aria-label="LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
+                                    <a href="#" class="social-icon" aria-label="Twitter"><i class="ph ph-twitter-logo"></i></a>
+                                    <a href="#" class="social-icon" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="contact-form-container">
+                        <h4 class="form-title">Send Us a Message</h4>
                         <form class="contact-form">
                             <div class="form-row">
                                 <div class="form-group">
@@ -201,13 +224,24 @@
                             </div>
                             <div class="form-group">
                                 <label for="contact-subject">Subject</label>
-                                <input type="text" id="contact-subject" name="subject" placeholder="What is this regarding?">
+                                <select id="contact-subject" name="subject">
+                                    <option value="" disabled selected>What is this regarding?</option>
+                                    <option value="ai-consultation">AI Consultation</option>
+                                    <option value="workflow-optimization">Workflow Optimization</option>
+                                    <option value="custom-solution">Custom AI Solution</option>
+                                    <option value="other">Other</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="contact-message">Message</label>
                                 <textarea id="contact-message" name="message" rows="4" placeholder="Tell us how we can help you" required></textarea>
                             </div>
-                            <button type="submit" class="cta-button">Send Message</button>
+                            <div class="form-footer">
+                                <button type="submit" class="cta-button">
+                                    <i class="ph ph-paper-plane-right"></i> Send Message
+                                </button>
+                                <p class="privacy-note">We respect your privacy and will never share your information.</p>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -217,7 +251,7 @@
         <footer>
             <div class="footer-content">
                 <div class="footer-brand">
-                    <div class="footer-logo">Softworks Trading Co.</div>
+                    <div class="footer-logo">Softworks Trading</div>
                     <p>Making AI implementation simple, strategic, and impactful for businesses of all sizes.</p>
                 </div>
                 <div class="footer-links">
