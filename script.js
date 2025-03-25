@@ -1077,4 +1077,244 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // AI Chat Functionality
+    const startChatButton = document.getElementById('start-chat');
+    const startCallButton = document.getElementById('start-call');
+    
+    if (startChatButton) {
+        startChatButton.addEventListener('click', function() {
+            // Here you would typically open a chat modal
+            // For now, we'll just show an alert
+            const chatModal = createChatModal();
+            document.body.appendChild(chatModal);
+        });
+    }
+    
+    if (startCallButton) {
+        startCallButton.addEventListener('click', function() {
+            // Here you would typically initiate a call
+            alert('Voice call feature coming soon! Our AI consultants will be able to talk with you directly.');
+        });
+    }
+    
+    // Create a simple chat modal
+    function createChatModal() {
+        // Create modal container
+        const modal = document.createElement('div');
+        modal.className = 'chat-modal';
+        modal.style.position = 'fixed';
+        modal.style.bottom = '20px';
+        modal.style.right = '20px';
+        modal.style.width = '350px';
+        modal.style.height = '500px';
+        modal.style.backgroundColor = 'var(--card-bg)';
+        modal.style.borderRadius = 'var(--border-radius)';
+        modal.style.boxShadow = 'var(--shadow-lg)';
+        modal.style.zIndex = '1000';
+        modal.style.overflow = 'hidden';
+        modal.style.display = 'flex';
+        modal.style.flexDirection = 'column';
+        modal.style.animation = 'fadeIn 0.3s ease';
+        
+        // Create header
+        const header = document.createElement('div');
+        header.style.padding = '15px';
+        header.style.borderBottom = '1px solid rgba(0, 0, 0, 0.1)';
+        header.style.display = 'flex';
+        header.style.justifyContent = 'space-between';
+        header.style.alignItems = 'center';
+        
+        const headerTitle = document.createElement('div');
+        headerTitle.style.display = 'flex';
+        headerTitle.style.alignItems = 'center';
+        headerTitle.style.gap = '10px';
+        
+        const aiIcon = document.createElement('div');
+        aiIcon.innerHTML = '<i class="ph ph-robot" style="color: var(--primary); font-size: 20px;"></i>';
+        
+        const title = document.createElement('h3');
+        title.textContent = 'AIDA - AI Consultant';
+        title.style.margin = '0';
+        title.style.fontFamily = 'Space Mono, monospace';
+        title.style.fontSize = '16px';
+        
+        const closeButton = document.createElement('button');
+        closeButton.innerHTML = '<i class="ph ph-x"></i>';
+        closeButton.style.background = 'none';
+        closeButton.style.border = 'none';
+        closeButton.style.fontSize = '18px';
+        closeButton.style.cursor = 'pointer';
+        closeButton.style.color = 'var(--text-secondary)';
+        closeButton.setAttribute('aria-label', 'Close chat');
+        
+        headerTitle.appendChild(aiIcon);
+        headerTitle.appendChild(title);
+        header.appendChild(headerTitle);
+        header.appendChild(closeButton);
+        
+        // Create chat area
+        const chatArea = document.createElement('div');
+        chatArea.style.flex = '1';
+        chatArea.style.overflowY = 'auto';
+        chatArea.style.padding = '15px';
+        chatArea.style.display = 'flex';
+        chatArea.style.flexDirection = 'column';
+        chatArea.style.gap = '10px';
+        
+        // Add initial message
+        const initialMessage = document.createElement('div');
+        initialMessage.className = 'chat-bubble ai-bubble';
+        initialMessage.style.maxWidth = '85%';
+        initialMessage.style.padding = '12px 16px';
+        initialMessage.style.borderRadius = '18px';
+        initialMessage.style.borderBottomLeftRadius = '4px';
+        initialMessage.style.backgroundColor = 'rgba(209, 0, 0, 0.1)';
+        initialMessage.style.alignSelf = 'flex-start';
+        
+        const messageText = document.createElement('p');
+        messageText.textContent = "Hi! I'm AIDA, your AI implementation specialist. How can I help with your AI adoption journey today?";
+        messageText.style.margin = '0';
+        
+        initialMessage.appendChild(messageText);
+        chatArea.appendChild(initialMessage);
+        
+        // Create input area
+        const inputArea = document.createElement('div');
+        inputArea.style.padding = '15px';
+        inputArea.style.borderTop = '1px solid rgba(0, 0, 0, 0.1)';
+        inputArea.style.display = 'flex';
+        inputArea.style.gap = '10px';
+        
+        const chatInput = document.createElement('input');
+        chatInput.type = 'text';
+        chatInput.placeholder = 'Type your message...';
+        chatInput.style.flex = '1';
+        chatInput.style.padding = '10px 15px';
+        chatInput.style.borderRadius = '20px';
+        chatInput.style.border = '1px solid var(--light-gray)';
+        chatInput.style.fontSize = '14px';
+        
+        const sendButton = document.createElement('button');
+        sendButton.innerHTML = '<i class="ph ph-paper-plane-right"></i>';
+        sendButton.style.width = '40px';
+        sendButton.style.height = '40px';
+        sendButton.style.borderRadius = '50%';
+        sendButton.style.backgroundColor = 'var(--primary)';
+        sendButton.style.color = 'white';
+        sendButton.style.border = 'none';
+        sendButton.style.cursor = 'pointer';
+        sendButton.style.display = 'flex';
+        sendButton.style.alignItems = 'center';
+        sendButton.style.justifyContent = 'center';
+        
+        inputArea.appendChild(chatInput);
+        inputArea.appendChild(sendButton);
+        
+        // Assemble the modal
+        modal.appendChild(header);
+        modal.appendChild(chatArea);
+        modal.appendChild(inputArea);
+        
+        // Add event listeners
+        closeButton.addEventListener('click', function() {
+            document.body.removeChild(modal);
+        });
+        
+        sendButton.addEventListener('click', function() {
+            if (chatInput.value.trim() !== '') {
+                // Add user message
+                const userMessage = document.createElement('div');
+                userMessage.className = 'chat-bubble user-bubble';
+                userMessage.style.maxWidth = '85%';
+                userMessage.style.padding = '12px 16px';
+                userMessage.style.borderRadius = '18px';
+                userMessage.style.borderBottomRightRadius = '4px';
+                userMessage.style.backgroundColor = 'var(--primary)';
+                userMessage.style.alignSelf = 'flex-end';
+                userMessage.style.color = 'white';
+                
+                const userText = document.createElement('p');
+                userText.textContent = chatInput.value;
+                userText.style.margin = '0';
+                
+                userMessage.appendChild(userText);
+                chatArea.appendChild(userMessage);
+                
+                // Clear input
+                const userQuery = chatInput.value;
+                chatInput.value = '';
+                
+                // Show typing indicator
+                const typingIndicator = document.createElement('div');
+                typingIndicator.className = 'typing-indicator';
+                typingIndicator.style.alignSelf = 'flex-start';
+                typingIndicator.style.display = 'flex';
+                typingIndicator.style.gap = '3px';
+                typingIndicator.style.padding = '12px 16px';
+                typingIndicator.style.backgroundColor = 'rgba(209, 0, 0, 0.05)';
+                typingIndicator.style.borderRadius = '18px';
+                
+                for (let i = 0; i < 3; i++) {
+                    const dot = document.createElement('div');
+                    dot.style.width = '8px';
+                    dot.style.height = '8px';
+                    dot.style.backgroundColor = 'rgba(209, 0, 0, 0.5)';
+                    dot.style.borderRadius = '50%';
+                    dot.style.animation = 'typingAnimation 1s infinite';
+                    dot.style.animationDelay = `${i * 0.15}s`;
+                    typingIndicator.appendChild(dot);
+                }
+                
+                chatArea.appendChild(typingIndicator);
+                chatArea.scrollTop = chatArea.scrollHeight;
+                
+                // Simulate AI response after delay
+                setTimeout(function() {
+                    // Remove typing indicator
+                    chatArea.removeChild(typingIndicator);
+                    
+                    // Add AI response
+                    const aiResponse = document.createElement('div');
+                    aiResponse.className = 'chat-bubble ai-bubble';
+                    aiResponse.style.maxWidth = '85%';
+                    aiResponse.style.padding = '12px 16px';
+                    aiResponse.style.borderRadius = '18px';
+                    aiResponse.style.borderBottomLeftRadius = '4px';
+                    aiResponse.style.backgroundColor = 'rgba(209, 0, 0, 0.1)';
+                    aiResponse.style.alignSelf = 'flex-start';
+                    
+                    const aiText = document.createElement('p');
+                    aiText.textContent = getAIResponse(userQuery);
+                    aiText.style.margin = '0';
+                    
+                    aiResponse.appendChild(aiText);
+                    chatArea.appendChild(aiResponse);
+                    chatArea.scrollTop = chatArea.scrollHeight;
+                }, 1500);
+            }
+        });
+        
+        // Allow sending with Enter key
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendButton.click();
+            }
+        });
+        
+        return modal;
+    }
+    
+    // Simple AI response generator
+    function getAIResponse(query) {
+        const responses = [
+            "I'd be happy to help you implement AI solutions for that. Can you tell me more about your current workflow?",
+            "That's a great question. AI can definitely streamline that process. Have you tried any AI tools already?",
+            "For your specific needs, we typically recommend starting with a focused use case. Would you like to schedule a deeper consultation?",
+            "Many of our clients have similar questions. We've found that a custom approach works best. Would you like to see some examples?",
+            "I understand your concerns. AI adoption can seem complex, but we can break it down into manageable steps for your business."
+        ];
+        
+        return responses[Math.floor(Math.random() * responses.length)];
+    }
 });
