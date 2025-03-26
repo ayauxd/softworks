@@ -209,79 +209,6 @@
                 </div>
             </section>
 
-            <div class="footer-column">
-                <h4>Get Started</h4>
-                <ul>
-                    <li><a href="#ai-consultation">AI Consultation</a></li>
-                    <li>
-                        <a href="#human-demo" class="consult-expert-link" id="human-demo">
-                            <i class="ph ph-calendar"></i>
-                            <span>Book Expert Session</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="footer-column">
-                <h4>Get Started</h4>
-                <ul>
-                    <li><a href="#ai-consultation">AI Consultation</a></li>
-                    <li>
-                        <a href="#human-demo" class="consult-expert-link" id="human-demo">
-                            <i class="ph ph-calendar"></i>
-                            <span>Book Expert Session</span>
-                        </a>
-                    </li>
-                </ul>
-                <div class="consultation-form-container" id="human-demo">
-                    <form id="consultation-form" class="consultation-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="fullName">Full Name</label>
-                                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email Address</label>
-                                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="company">Company/Organization</label>
-                                <input type="text" id="company" name="company" placeholder="Enter your company name (optional)">
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="interest">Primary Interest</label>
-                            <select id="interest" name="interest" required>
-                                <option value="" disabled selected>Select your primary interest</option>
-                                <option value="workflow">Workflow Automation</option>
-                                <option value="content">Content Creation</option>
-                                <option value="data">Data Analysis</option>
-                                <option value="customer">Customer Service</option>
-                                <option value="custom">Custom Solution</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Tell us about your needs</label>
-                            <textarea id="message" name="message" rows="4" placeholder="Describe your business challenges and what you hope to achieve with AI"></textarea>
-                        </div>
-                        
-                        <div class="form-submit">
-                            <button type="submit" class="cta-button">SCHEDULE CONSULTATION</button>
-                            <p class="form-note">Our team will respond within 24 hours to confirm your consultation</p>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            
             <section id="blog" class="blog-section">
                 <h2 class="section-overline">Latest Insights</h2>
                 <h3 class="section-title">AI Adoption Blog</h3>
@@ -329,6 +256,66 @@
                     <a href="#blog" class="secondary-button">View All Articles</a>
                 </div>
             </section>
+
+            <section id="book-consultation" class="collapsible-consultation-section">
+                <div class="section-header collapsible-trigger">
+                    <h2 class="section-overline">Expert Guidance</h2>
+                    <h3 class="section-title">Book a Consultation with a TIWA.AI Specialist</h3>
+                    <p class="section-description">Schedule a personalized 30-minute session with one of our AI implementation experts to discuss your specific needs.</p>
+                    <button class="toggle-form-btn" aria-expanded="false" aria-controls="consultation-form-container">
+                        <span class="btn-text">Show consultation form</span>
+                        <i class="ph ph-caret-down"></i>
+                    </button>
+                </div>
+                
+                <div class="consultation-form-container collapsible-content" id="consultation-form-container">
+                    <form id="consultation-form" class="consultation-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="company">Company/Organization</label>
+                                <input type="text" id="company" name="company" placeholder="Enter your company name (optional)">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="interest">Primary Interest</label>
+                            <select id="interest" name="interest" required>
+                                <option value="" disabled selected>Select your primary interest</option>
+                                <option value="workflow">Workflow Automation</option>
+                                <option value="content">Content Creation</option>
+                                <option value="data">Data Analysis</option>
+                                <option value="customer">Customer Service</option>
+                                <option value="custom">Custom Solution</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Tell us about your needs</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Describe your business challenges and what you hope to achieve with AI"></textarea>
+                        </div>
+                        
+                        <div class="form-submit">
+                            <button type="submit" class="cta-button">SCHEDULE CONSULTATION</button>
+                            <p class="form-note">Our team will respond within 24 hours to confirm your consultation</p>
+                        </div>
+                    </form>
+                </div>
+            </section>
         </main>
         
         <footer id="contact">
@@ -339,9 +326,9 @@
                     
                     <!-- Contact information moved from separate section -->
                     <div class="footer-contact">
-                        <a href="mailto:automation@tiwa.ai" class="footer-email">
+                        <a href="mailto:agent@tiwa.ai" class="footer-email">
                             <i class="ph ph-envelope"></i>
-                            <span>automation@tiwa.ai</span>
+                            <span>agent@tiwa.ai</span>
                         </a>
                         <div class="footer-social">
                             <a href="#" class="social-icon" aria-label="LinkedIn"><i class="ph ph-linkedin-logo"></i></a>

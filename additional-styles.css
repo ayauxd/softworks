@@ -289,4 +289,78 @@
     .footer-column .consultation-form-container {
         padding: 20px 15px;
     }
+}
+
+/* Collapsible Consultation Section */
+.collapsible-consultation-section {
+    background-color: var(--lighter-gray);
+    padding: var(--section-spacing) 0;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    margin-top: 40px;
+}
+
+.collapsible-consultation-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 90% 90%, rgba(209, 0, 0, 0.05) 0%, transparent 70%);
+    z-index: -1;
+}
+
+.section-header {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.toggle-form-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 24px;
+    font-family: 'Space Mono', monospace;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: all 0.3s ease;
+}
+
+.toggle-form-btn:hover {
+    background-color: #b80000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(209, 0, 0, 0.2);
+}
+
+.toggle-form-btn i {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.toggle-form-btn[aria-expanded="true"] i {
+    transform: rotate(180deg);
+}
+
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease, max-height 0.5s ease;
+}
+
+.collapsible-content.expanded {
+    max-height: 2000px; /* Arbitrary large value */
+    opacity: 1;
+    transform: translateY(0);
 } 

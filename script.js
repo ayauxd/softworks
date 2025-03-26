@@ -581,4 +581,23 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         });
     }
+
+    // Add collapsible form functionality
+    const toggleFormBtn = document.querySelector('.toggle-form-btn');
+    const collapsibleContent = document.querySelector('.collapsible-content');
+    
+    if (toggleFormBtn && collapsibleContent) {
+        toggleFormBtn.addEventListener('click', function() {
+            const expanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !expanded);
+            
+            if (!expanded) {
+                collapsibleContent.classList.add('expanded');
+                this.querySelector('.btn-text').textContent = 'Hide consultation form';
+            } else {
+                collapsibleContent.classList.remove('expanded');
+                this.querySelector('.btn-text').textContent = 'Show consultation form';
+            }
+        });
+    }
 });
