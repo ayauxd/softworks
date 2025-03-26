@@ -1394,7 +1394,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Human Expert Booking Form
-    const humanDemoButton = document.querySelector('#try-human-demo');
+    const humanDemoButton = document.querySelector('#human-demo');
     
     if (humanDemoButton) {
         humanDemoButton.addEventListener('click', function(e) {

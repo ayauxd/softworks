@@ -940,90 +940,7 @@ h2 {
     font-family: 'Space Mono', monospace;
 }
 
-/* Contact section styles */
-.contact-section {
-    padding: 60px 0;
-    background-color: var(--lighter-gray);
-    border-radius: var(--border-radius);
-    margin-bottom: 0;
-}
-
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 40px;
-    margin-top: 40px;
-}
-
-.contact-info {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.contact-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-}
-
-.contact-icon {
-    font-size: 32px;
-    color: var(--primary);
-    margin-top: 5px;
-}
-
-.contact-item h4 {
-    font-family: 'Space Mono', monospace;
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: var(--text-primary);
-}
-
-.contact-item p {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    color: var(--text-secondary);
-    margin-bottom: 4px;
-}
-
-.info-text {
-    font-size: 14px;
-    color: var(--medium-gray);
-    font-style: italic;
-}
-
-.contact-form-container {
-    background-color: var(--card-bg);
-    padding: 30px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.03);
-}
-
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.contact-form .form-group {
-    margin-bottom: 0;
-}
-
-.contact-form button {
-    align-self: flex-start;
-    margin-top: 10px;
-}
-
-/* Footer styles */
+/* Footer styles with integrated contact section */
 footer {
     background-color: var(--bg-color);
     padding: 60px 0 30px;
@@ -1034,10 +951,12 @@ footer {
     display: flex;
     justify-content: space-between;
     margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 40px;
 }
 
 .footer-brand {
-    max-width: 300px;
+    max-width: 380px;
 }
 
 .footer-logo {
@@ -1053,11 +972,61 @@ footer {
     font-size: 15px;
     color: var(--text-secondary);
     line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+/* New footer contact styles */
+.footer-contact {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-email {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--text-primary);
+    padding: 12px 16px;
+    background-color: rgba(209, 0, 0, 0.05);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.footer-email:hover {
+    background-color: rgba(209, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.footer-email i {
+    font-size: 20px;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.footer-email span {
+    font-family: 'Space Mono', monospace;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.footer-email small {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.footer-social {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
 }
 
 .footer-links {
     display: flex;
     gap: 60px;
+    flex-wrap: wrap;
 }
 
 .footer-column h4 {
@@ -1073,7 +1042,7 @@ footer {
 }
 
 .footer-column li {
-    margin-bottom: 10px;
+    margin-bottom: 14px;
 }
 
 .footer-column a {
@@ -1088,6 +1057,31 @@ footer {
     color: var(--primary);
 }
 
+.consult-expert-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background-color: rgba(209, 0, 0, 0.08);
+    border-radius: 6px;
+    color: var(--primary) !important;
+    font-family: 'Space Mono', monospace !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease;
+    width: fit-content;
+}
+
+.consult-expert-link:hover {
+    background-color: var(--primary);
+    color: var(--white) !important;
+    transform: translateY(-2px);
+}
+
+.consult-expert-link i {
+    font-size: 16px;
+}
+
 .footer-bottom {
     text-align: center;
     padding-top: 20px;
@@ -1098,6 +1092,43 @@ footer {
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     color: var(--medium-gray);
+}
+
+/* Media queries for footer */
+@media screen and (max-width: 992px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .footer-brand {
+        max-width: 100%;
+    }
+    
+    .footer-contact {
+        margin-top: 20px;
+    }
+    
+    .footer-social {
+        justify-content: flex-start;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .footer-links {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .footer-column {
+        width: 100%;
+    }
+    
+    .consult-expert-link {
+        width: 100%;
+        justify-content: center;
+        padding: 10px 16px;
+    }
 }
 
 /* Tiwa AI Chatbot Modal - improved and simplified */
@@ -1497,61 +1528,23 @@ footer {
 }
 
 @media screen and (max-width: 576px) {
-    .contact-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-    }
-    
-    .contact-icon-wrapper {
-        margin-bottom: 8px;
-    }
-    
-    .social-icons {
-        justify-content: space-between;
-        width: 100%;
-    }
-    
-    .form-footer {
-        align-items: center;
-        text-align: center;
-    }
-    
     .cta-button, .secondary-button {
         width: 100%;
     }
 }
 
+/* Social icon styles (kept and moved to be with other footer styles) */
 .social-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background-color: rgba(209, 0, 0, 0.1);
     color: var(--primary);
     text-decoration: none;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.social-icon:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, rgba(209, 0, 0, 0.15) 0%, rgba(209, 0, 0, 0) 100%);
-    z-index: 0;
-}
-
-.social-icon i {
-    font-size: 22px;
-    position: relative;
-    z-index: 1;
 }
 
 .social-icon:hover {
@@ -1561,57 +1554,8 @@ footer {
     box-shadow: 0 6px 12px rgba(209, 0, 0, 0.2);
 }
 
-/* iOS Safari Form Fixes */
-@supports (-webkit-touch-callout: none) {
-    /* Fix for iOS Safari input and button appearance */
-    input, 
-    select,
-    textarea,
-    button {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        border-radius: 8px;
-        font-size: 16px !important; /* Prevents auto-zoom on input focus */
-    }
-    
-    /* Fix for iOS Safari form shadows */
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-        outline: none;
-        box-shadow: 0 0 0 3px rgba(209, 0, 0, 0.15);
-    }
-    
-    /* Prevent text resizing when device orientation changes */
-    html {
-        -webkit-text-size-adjust: 100%;
-        -moz-text-size-adjust: 100%;
-        -ms-text-size-adjust: 100%;
-        text-size-adjust: 100%;
-    }
-    
-    /* Improve touch response on iOS Safari */
-    a,
-    button,
-    .cta-button,
-    .secondary-button,
-    .social-icon {
-        cursor: pointer;
-        touch-action: manipulation;
-    }
-}
-
-/* Fix for input appearance across all browsers */
-input[type="text"],
-input[type="email"],
-textarea,
-select,
-button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: 8px;
+.social-icon i {
+    font-size: 20px;
 }
 
 /* Mobile nav animation */
