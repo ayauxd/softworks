@@ -204,4 +204,89 @@
     .consultation-form-container {
         padding: 30px 20px;
     }
+}
+
+/* Footer Consultation Form */
+.footer-column .consultation-form-container {
+    margin-top: 30px;
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer-column .consultation-form-container:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.footer-column .consultation-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-bottom: 0;
+}
+
+.footer-column .consultation-form .form-group {
+    margin-bottom: 20px;
+}
+
+.footer-column .consultation-form label {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.footer-column .consultation-form input,
+.footer-column .consultation-form select,
+.footer-column .consultation-form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: var(--text-primary);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer-column .consultation-form input:focus,
+.footer-column .consultation-form select:focus,
+.footer-column .consultation-form textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(209, 0, 0, 0.1);
+}
+
+.footer-column .consultation-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.footer-column .form-submit {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.footer-column .form-note {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+@media screen and (max-width: 768px) {
+    .footer-column .consultation-form .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .footer-column .consultation-form-container {
+        padding: 20px 15px;
+    }
 } 
