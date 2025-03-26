@@ -1,5 +1,12 @@
 // Simplified script with minimal animations
 document.addEventListener('DOMContentLoaded', function() {
+    // Add skip to content link for accessibility
+    const skipLink = document.createElement('a');
+    skipLink.href = '#what-we-do';
+    skipLink.className = 'skip-to-content';
+    skipLink.textContent = 'Skip to content';
+    document.body.insertBefore(skipLink, document.body.firstChild);
+    
     // Mobile navigation toggle with accessibility improvements
     const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
     const mainNav = document.querySelector('.main-nav');
@@ -85,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Smooth scrolling for anchor links
+    // Enhanced smooth scrolling for anchor links
     const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
     
     smoothScrollLinks.forEach(link => {
@@ -93,6 +100,10 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             
             const targetId = this.getAttribute('href');
+            
+            // Don't scroll for empty hash or href="#"
+            if (targetId === '#') return;
+            
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
@@ -104,9 +115,83 @@ document.addEventListener('DOMContentLoaded', function() {
                     top: offsetPosition,
                     behavior: 'smooth'
                 });
+                
+                // Update active state in navigation
+                updateActiveNavLink(targetId);
+                
+                // Update URL hash without triggering scroll
+                history.pushState(null, null, targetId);
             }
         });
     });
+    
+    // Update active nav link based on scroll position
+    function updateActiveNavLink(targetId) {
+        // Remove active class from all nav links
+        const navLinks = document.querySelectorAll('.main-nav a');
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            link.setAttribute('aria-current', 'false');
+        });
+        
+        // Add active class to the link pointing to current section
+        const activeLink = document.querySelector(`.main-nav a[href="${targetId}"]`);
+        if (activeLink) {
+            activeLink.classList.add('active');
+            activeLink.setAttribute('aria-current', 'page');
+        }
+    }
+    
+    // Set active nav link on page load based on URL hash
+    function setInitialActiveNavLink() {
+        const hash = window.location.hash;
+        if (hash) {
+            updateActiveNavLink(hash);
+        } else {
+            // Default to first nav link
+            const firstNavLink = document.querySelector('.main-nav a');
+            if (firstNavLink) {
+                firstNavLink.classList.add('active');
+                firstNavLink.setAttribute('aria-current', 'page');
+            }
+        }
+    }
+    
+    // Call on page load
+    setInitialActiveNavLink();
+    
+    // Update active nav link on scroll
+    let isScrolling = false;
+    
+    window.addEventListener('scroll', function() {
+        if (!isScrolling) {
+            isScrolling = true;
+            setTimeout(handleScroll, 100);
+        }
+    });
+    
+    function handleScroll() {
+        // Find which section is currently visible
+        const sections = document.querySelectorAll('section[id]');
+        let currentSectionId = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            
+            if (window.pageYOffset >= sectionTop - 150 && 
+                window.pageYOffset < sectionTop + sectionHeight - 150) {
+                currentSectionId = '#' + section.getAttribute('id');
+            }
+        });
+        
+        if (currentSectionId) {
+            updateActiveNavLink(currentSectionId);
+        }
+        
+        isScrolling = false;
+    }
+    
     // Check for dark mode preference
     const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
     if (prefersDarkScheme.matches) {
