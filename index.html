@@ -200,24 +200,43 @@
                 <p class="section-description">Our AI consultant can analyze your business needs and suggest tailored AI solutions in minutes.</p>
                 
                 <div class="ai-interface-container">
-                    <div class="ai-chat-interface">
-                        <div class="chat-header">
-                            <div class="ai-avatar">
-                                <div class="avatar-circle"></div>
-                            </div>
-                            <div class="ai-info">
-                                <h4 class="ai-name">AIDA</h4>
-                                <p class="ai-status">AI Implementation Specialist</p>
-                            </div>
+                    <div class="modern-chat-interface">
+                        <div class="chat-welcome">
+                            <h4 class="chat-greeting">Hello, I'm AIDA.</h4>
+                            <p class="chat-subgreeting">How can I help you implement AI solutions today?</p>
                         </div>
                         
-                        <div class="chat-preview">
+                        <div class="quick-actions">
+                            <button class="quick-action-button" data-query="Workflow automation">
+                                <i class="ph ph-flow-arrow"></i>
+                                <span>Workflow Automation</span>
+                            </button>
+                            <button class="quick-action-button" data-query="AI for content creation">
+                                <i class="ph ph-paint-brush"></i>
+                                <span>Content Creation</span>
+                            </button>
+                            <button class="quick-action-button" data-query="Data analysis">
+                                <i class="ph ph-chart-line-up"></i>
+                                <span>Data Analysis</span>
+                            </button>
+                            <button class="quick-action-button" data-query="Customer service AI">
+                                <i class="ph ph-users"></i>
+                                <span>Customer Service</span>
+                            </button>
+                            <button class="quick-action-button" data-query="Implementation steps">
+                                <i class="ph ph-code"></i>
+                                <span>Implementation</span>
+                            </button>
+                        </div>
+                        
+                        <div class="chat-messages" id="chat-messages">
                             <div class="chat-bubble ai-bubble">
-                                <p>Hi, I'm AIDA. I've helped 200+ businesses implement AI solutions. What are you looking to automate or optimize?</p>
+                                <p>Hi there! I've helped 200+ businesses implement AI solutions. What are you looking to automate or optimize?</p>
                             </div>
+                            <!-- Dynamic messages will appear here -->
                         </div>
                         
-                        <div class="chat-input-container">
+                        <div class="chat-input-wrapper">
                             <input type="text" class="chat-input" placeholder="Type your business challenge..." aria-label="Type your message">
                             <div class="chat-actions">
                                 <button class="chat-action-button" id="start-chat" aria-label="Send message">
@@ -229,11 +248,11 @@
                             </div>
                         </div>
                         
-                        <div class="chat-capabilities">
-                            <span class="capability-tag">Implementation Strategy</span>
-                            <span class="capability-tag">Business Impact Analysis</span>
-                            <span class="capability-tag">Technical Guidance</span>
-                            <span class="capability-tag">Team Integration</span>
+                        <div class="ai-capabilities">
+                            <div class="ai-model-selector">
+                                <span class="ai-model-label">AIDA 3</span>
+                                <i class="ph ph-caret-down"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
