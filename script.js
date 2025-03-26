@@ -1081,23 +1081,98 @@ document.addEventListener('DOMContentLoaded', function() {
     // AI Chat Functionality
     const startChatButton = document.getElementById('start-chat');
     const startCallButton = document.getElementById('start-call');
+    const chatInput = document.querySelector('.chat-input');
+    
+    // Function to handle chat input submission
+    function handleChatInput() {
+        if (chatInput && chatInput.value.trim() !== '') {
+            const userMessage = chatInput.value.trim();
+            const chatPreview = document.querySelector('.chat-preview');
+            
+            if (chatPreview) {
+                // Add user message
+                const userBubble = document.createElement('div');
+                userBubble.className = 'chat-bubble user-bubble';
+                userBubble.style.backgroundColor = 'var(--primary)';
+                userBubble.style.color = 'white';
+                userBubble.style.alignSelf = 'flex-end';
+                userBubble.style.borderBottomRightRadius = '4px';
+                
+                const userText = document.createElement('p');
+                userText.textContent = userMessage;
+                userBubble.appendChild(userText);
+                chatPreview.appendChild(userBubble);
+                
+                // Clear input
+                chatInput.value = '';
+                
+                // Show typing indicator
+                const typingIndicator = document.createElement('div');
+                typingIndicator.className = 'typing-indicator chat-bubble ai-bubble';
+                typingIndicator.style.display = 'flex';
+                typingIndicator.style.gap = '4px';
+                typingIndicator.style.padding = '12px 16px';
+                typingIndicator.style.maxWidth = 'fit-content';
+                
+                for (let i = 0; i < 3; i++) {
+                    const dot = document.createElement('div');
+                    dot.style.width = '6px';
+                    dot.style.height = '6px';
+                    dot.style.backgroundColor = 'var(--primary)';
+                    dot.style.borderRadius = '50%';
+                    dot.style.opacity = '0.7';
+                    dot.style.animation = 'typingAnimation 1s infinite';
+                    dot.style.animationDelay = `${i * 0.15}s`;
+                    typingIndicator.appendChild(dot);
+                }
+                
+                chatPreview.appendChild(typingIndicator);
+                
+                // Auto scroll to the latest message
+                chatPreview.scrollTop = chatPreview.scrollHeight;
+                
+                // After 1.5 seconds, remove typing indicator and show AI response
+                setTimeout(() => {
+                    chatPreview.removeChild(typingIndicator);
+                    
+                    // Create AI response
+                    const aiBubble = document.createElement('div');
+                    aiBubble.className = 'chat-bubble ai-bubble';
+                    
+                    const aiText = document.createElement('p');
+                    aiText.textContent = getAIResponse(userMessage);
+                    aiBubble.appendChild(aiText);
+                    chatPreview.appendChild(aiBubble);
+                    
+                    // Auto scroll to the latest message
+                    chatPreview.scrollTop = chatPreview.scrollHeight;
+                }, 1500);
+            }
+        }
+    }
+    
+    if (chatInput) {
+        // Submit on Enter key
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleChatInput();
+            }
+        });
+    }
     
     if (startChatButton) {
+        // Handle clicks on the paper plane button
         startChatButton.addEventListener('click', function() {
-            // Here you would typically open a chat modal
-            // For now, we'll just show an alert
-            const chatModal = createChatModal();
-            document.body.appendChild(chatModal);
+            handleChatInput();
         });
     }
     
     if (startCallButton) {
         startCallButton.addEventListener('click', function() {
-            // Here you would typically initiate a call
-            alert('Voice call feature coming soon! Our AI consultants will be able to talk with you directly.');
+            alert('Voice call feature coming soon! Our AI consultants will be available to talk with you directly.');
         });
     }
-    
+
     // Create a simple chat modal
     function createChatModal() {
         // Create modal container
@@ -1316,5 +1391,263 @@ document.addEventListener('DOMContentLoaded', function() {
         ];
         
         return responses[Math.floor(Math.random() * responses.length)];
+    }
+
+    // Human Expert Booking Form
+    const humanDemoButton = document.querySelector('#try-human-demo');
+    
+    if (humanDemoButton) {
+        humanDemoButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const bookingModal = createBookingModal();
+            document.body.appendChild(bookingModal);
+        });
+    }
+    
+    function createBookingModal() {
+        // Create modal container
+        const modal = document.createElement('div');
+        modal.className = 'booking-modal modal-container';
+        modal.style.position = 'fixed';
+        modal.style.top = '0';
+        modal.style.left = '0';
+        modal.style.width = '100%';
+        modal.style.height = '100%';
+        modal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        modal.style.backdropFilter = 'blur(5px)';
+        modal.style.zIndex = '1000';
+        modal.style.display = 'flex';
+        modal.style.justifyContent = 'center';
+        modal.style.alignItems = 'center';
+        modal.style.padding = '20px';
+        modal.style.animation = 'fadeIn 0.3s ease';
+        
+        // Create modal content
+        const modalContent = document.createElement('div');
+        modalContent.className = 'booking-modal-content';
+        modalContent.style.backgroundColor = 'var(--card-bg)';
+        modalContent.style.borderRadius = 'var(--border-radius)';
+        modalContent.style.boxShadow = 'var(--shadow-lg)';
+        modalContent.style.width = '100%';
+        modalContent.style.maxWidth = '550px';
+        modalContent.style.maxHeight = '90vh';
+        modalContent.style.overflowY = 'auto';
+        modalContent.style.position = 'relative';
+        modalContent.style.padding = '30px';
+        
+        // Create close button
+        const closeButton = document.createElement('button');
+        closeButton.className = 'modal-close';
+        closeButton.innerHTML = '<i class="ph ph-x"></i>';
+        closeButton.style.position = 'absolute';
+        closeButton.style.top = '20px';
+        closeButton.style.right = '20px';
+        closeButton.style.background = 'none';
+        closeButton.style.border = 'none';
+        closeButton.style.fontSize = '24px';
+        closeButton.style.cursor = 'pointer';
+        closeButton.style.color = 'var(--text-secondary)';
+        closeButton.setAttribute('aria-label', 'Close booking form');
+        
+        // Create header
+        const header = document.createElement('div');
+        header.className = 'booking-header';
+        header.style.marginBottom = '25px';
+        
+        const title = document.createElement('h2');
+        title.textContent = 'Schedule a Consultation';
+        title.style.fontFamily = 'Space Mono, monospace';
+        title.style.fontSize = '28px';
+        title.style.color = 'var(--text-primary)';
+        title.style.marginBottom = '10px';
+        
+        const subtitle = document.createElement('p');
+        subtitle.textContent = 'Book a personalized 30-minute session with one of our AI implementation experts.';
+        subtitle.style.color = 'var(--text-secondary)';
+        subtitle.style.fontSize = '16px';
+        subtitle.style.marginBottom = '0';
+        
+        header.appendChild(title);
+        header.appendChild(subtitle);
+        
+        // Create booking form
+        const form = document.createElement('form');
+        form.className = 'booking-form';
+        form.style.display = 'flex';
+        form.style.flexDirection = 'column';
+        form.style.gap = '20px';
+        
+        // Form fields - Contact Info Section
+        const contactSection = document.createElement('div');
+        contactSection.className = 'form-section';
+        contactSection.innerHTML = `
+            <h3 class="section-label" style="font-family: 'Space Mono', monospace; font-size: 16px; margin-bottom: 15px; color: var(--primary);">CONTACT INFORMATION</h3>
+            <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="form-group">
+                    <label for="fullName" style="display: block; margin-bottom: 8px; font-weight: 600;">Full Name*</label>
+                    <input type="text" id="fullName" name="fullName" required
+                           style="width: 100%; padding: 12px; border: 1px solid var(--light-gray); border-radius: 8px; font-size: 14px; background-color: var(--card-bg);">
+                </div>
+                <div class="form-group">
+                    <label for="email" style="display: block; margin-bottom: 8px; font-weight: 600;">Email Address*</label>
+                    <input type="email" id="email" name="email" required
+                           style="width: 100%; padding: 12px; border: 1px solid var(--light-gray); border-radius: 8px; font-size: 14px; background-color: var(--card-bg);">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="company" style="display: block; margin-bottom: 8px; font-weight: 600;">Company</label>
+                <input type="text" id="company" name="company"
+                       style="width: 100%; padding: 12px; border: 1px solid var(--light-gray); border-radius: 8px; font-size: 14px; background-color: var(--card-bg);">
+            </div>
+        `;
+        
+        // Form fields - Business Needs Section
+        const businessSection = document.createElement('div');
+        businessSection.className = 'form-section';
+        businessSection.innerHTML = `
+            <h3 class="section-label" style="font-family: 'Space Mono', monospace; font-size: 16px; margin-bottom: 15px; color: var(--primary);">CONSULTATION FOCUS</h3>
+            <div class="form-group">
+                <label for="primaryGoal" style="display: block; margin-bottom: 8px; font-weight: 600;">What's your primary goal with AI?*</label>
+                <select id="primaryGoal" name="primaryGoal" required
+                        style="width: 100%; padding: 12px; border: 1px solid var(--light-gray); border-radius: 8px; font-size: 14px; background-color: var(--card-bg); appearance: none; background-image: url('data:image/svg+xml;utf8,<svg fill=\\"gray\\" height=\\"24\\" viewBox=\\"0 0 24 24\\" width=\\"24\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path d=\\"M7 10l5 5 5-5z\\"/><path d=\\"M0 0h24v24H0z\\" fill=\\"none\\"/></svg>'); background-repeat: no-repeat; background-position: right 10px center;">
+                    <option value="" disabled selected>Select your primary goal</option>
+                    <option value="automation">Automating repetitive tasks</option>
+                    <option value="customerService">Customer service/support</option>
+                    <option value="contentCreation">Content creation/management</option>
+                    <option value="dataAnalysis">Data analysis/insights</option>
+                    <option value="processOptimization">Process optimization</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message" style="display: block; margin-bottom: 8px; font-weight: 600;">Specific questions or challenges</label>
+                <textarea id="message" name="message" rows="3"
+                          style="width: 100%; padding: 12px; border: 1px solid var(--light-gray); border-radius: 8px; font-size: 14px; background-color: var(--card-bg); resize: vertical;"></textarea>
+            </div>
+        `;
+        
+        // Form fields - Scheduling Section
+        const schedulingSection = document.createElement('div');
+        schedulingSection.className = 'form-section';
+        schedulingSection.innerHTML = `
+            <h3 class="section-label" style="font-family: 'Space Mono', monospace; font-size: 16px; margin-bottom: 15px; color: var(--primary);">PREFERRED SCHEDULING</h3>
+            <div class="form-group">
+                <label for="preferredDate" style="display: block; margin-bottom: 8px; font-weight: 600;">Preferred date*</label>
+                <input type="date" id="preferredDate" name="preferredDate" required min="${new Date().toISOString().split('T')[0]}"
+                       style="width: 100%; padding: 12px; border: 1px solid var(--light-gray); border-radius: 8px; font-size: 14px; background-color: var(--card-bg);">
+            </div>
+            <div class="form-group">
+                <label for="preferredTime" style="display: block; margin-bottom: 8px; font-weight: 600;">Preferred time*</label>
+                <select id="preferredTime" name="preferredTime" required
+                        style="width: 100%; padding: 12px; border: 1px solid var(--light-gray); border-radius: 8px; font-size: 14px; background-color: var(--card-bg); appearance: none; background-image: url('data:image/svg+xml;utf8,<svg fill=\\"gray\\" height=\\"24\\" viewBox=\\"0 0 24 24\\" width=\\"24\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path d=\\"M7 10l5 5 5-5z\\"/><path d=\\"M0 0h24v24H0z\\" fill=\\"none\\"/></svg>'); background-repeat: no-repeat; background-position: right 10px center;">
+                    <option value="" disabled selected>Select your preferred time</option>
+                    <option value="morning">Morning (9am - 12pm)</option>
+                    <option value="afternoon">Afternoon (1pm - 5pm)</option>
+                    <option value="evening">Evening (6pm - 8pm)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="timezone" style="display: block; margin-bottom: 8px; font-weight: 600;">Your timezone*</label>
+                <select id="timezone" name="timezone" required
+                        style="width: 100%; padding: 12px; border: 1px solid var(--light-gray); border-radius: 8px; font-size: 14px; background-color: var(--card-bg); appearance: none; background-image: url('data:image/svg+xml;utf8,<svg fill=\\"gray\\" height=\\"24\\" viewBox=\\"0 0 24 24\\" width=\\"24\\" xmlns=\\"http://www.w3.org/2000/svg\\"><path d=\\"M7 10l5 5 5-5z\\"/><path d=\\"M0 0h24v24H0z\\" fill=\\"none\\"/></svg>'); background-repeat: no-repeat; background-position: right 10px center;">
+                    <option value="" disabled selected>Select your timezone</option>
+                    <option value="PST">Pacific (PST/PDT)</option>
+                    <option value="MST">Mountain (MST/MDT)</option>
+                    <option value="CST">Central (CST/CDT)</option>
+                    <option value="EST">Eastern (EST/EDT)</option>
+                    <option value="GMT">GMT/UTC</option>
+                    <option value="CET">Central European (CET)</option>
+                    <option value="IST">India (IST)</option>
+                    <option value="JST">Japan/Korea (JST/KST)</option>
+                    <option value="AEDT">Australia Eastern (AEDT)</option>
+                </select>
+            </div>
+        `;
+        
+        // Submit button
+        const submitButton = document.createElement('button');
+        submitButton.type = 'submit';
+        submitButton.className = 'booking-submit';
+        submitButton.textContent = 'BOOK CONSULTATION';
+        submitButton.style.backgroundColor = 'var(--primary)';
+        submitButton.style.color = 'white';
+        submitButton.style.border = 'none';
+        submitButton.style.borderRadius = '6px';
+        submitButton.style.padding = '16px';
+        submitButton.style.fontFamily = 'Space Mono, monospace';
+        submitButton.style.fontSize = '16px';
+        submitButton.style.fontWeight = '600';
+        submitButton.style.cursor = 'pointer';
+        submitButton.style.marginTop = '10px';
+        submitButton.style.transition = 'all 0.3s ease';
+        
+        // Privacy note
+        const privacyNote = document.createElement('p');
+        privacyNote.className = 'privacy-note';
+        privacyNote.textContent = 'We respect your privacy and will only use this information to schedule your consultation.';
+        privacyNote.style.fontSize = '12px';
+        privacyNote.style.color = 'var(--text-secondary)';
+        privacyNote.style.marginTop = '10px';
+        privacyNote.style.textAlign = 'center';
+        
+        // Assemble form
+        form.appendChild(contactSection);
+        form.appendChild(businessSection);
+        form.appendChild(schedulingSection);
+        form.appendChild(submitButton);
+        form.appendChild(privacyNote);
+        
+        // Assemble modal content
+        modalContent.appendChild(closeButton);
+        modalContent.appendChild(header);
+        modalContent.appendChild(form);
+        
+        // Add modal content to modal
+        modal.appendChild(modalContent);
+        
+        // Add event listeners for close button and outside click
+        closeButton.addEventListener('click', function() {
+            document.body.removeChild(modal);
+        });
+        
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                document.body.removeChild(modal);
+            }
+        });
+        
+        // Form submission handler
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Replace form with success message
+            modalContent.innerHTML = `
+                <div class="success-message" style="text-align: center; padding: 30px 20px;">
+                    <i class="ph ph-check-circle" style="font-size: 64px; color: var(--primary); margin-bottom: 20px;"></i>
+                    <h3 style="font-family: 'Space Mono', monospace; font-size: 24px; margin-bottom: 20px; color: var(--text-primary);">Consultation Scheduled!</h3>
+                    <p style="font-size: 16px; color: var(--text-secondary); margin-bottom: 15px; line-height: 1.6;">Thank you for booking a consultation with our AI implementation expert. We'll send you a calendar invitation shortly with all the details.</p>
+                    <p style="font-size: 16px; color: var(--text-secondary); margin-bottom: 15px; line-height: 1.6;">In the meantime, you might want to try our AI consultant to get some preliminary insights.</p>
+                    <button class="close-success-btn" style="background-color: transparent; border: 2px solid var(--primary); color: var(--primary); border-radius: 6px; padding: 12px 24px; font-family: 'Space Mono', monospace; font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 20px;">CLOSE</button>
+                </div>
+            `;
+            
+            // Add event listener to the new close button
+            const closeSuccessBtn = modalContent.querySelector('.close-success-btn');
+            if (closeSuccessBtn) {
+                closeSuccessBtn.addEventListener('click', function() {
+                    document.body.removeChild(modal);
+                });
+            }
+            
+            // Auto-close after 8 seconds
+            setTimeout(function() {
+                if (document.body.contains(modal)) {
+                    document.body.removeChild(modal);
+                }
+            }, 8000);
+        });
+        
+        return modal;
     }
 });
